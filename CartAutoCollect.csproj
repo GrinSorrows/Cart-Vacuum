@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <AssemblyName>CartAutoCollect</AssemblyName>
+    <RootNamespace>CartAutoCollect</RootNamespace>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- These DLLs must be copied from your Valheim install -->
+    <Reference Include="assembly_valheim">
+      <HintPath>libs\assembly_valheim.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>libs\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>libs\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>libs\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>libs\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>
