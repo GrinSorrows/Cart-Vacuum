@@ -20,13 +20,17 @@ jobs:
         with:
           dotnet-version: "6.0.x"
 
-      # 3 — Restore NuGet packages
-      - name: Restore NuGet packages
-        run: dotnet restore CartAutoCollect.csproj
+      # 3 — Download Valheim/BepInEx libs from release assets
+      - name: Download libs
+        run: |
+          mkdir -p libs
+          gh release download libs --pattern "*.dll" --dir libs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # 4 — Build the DLL
       - name: Build mod
-        run: dotnet build CartAutoCollect.csproj -c Release -o build/ --no-restore
+        run: dotnet build CartAutoCollect.csproj -c Release -o build/
 
       # 5 — Install tcli (Thunderstore CLI)
       - name: Install tcli
