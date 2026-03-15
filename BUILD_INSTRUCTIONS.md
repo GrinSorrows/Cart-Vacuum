@@ -3,48 +3,33 @@
 ## Prerequisites
 - Visual Studio 2022 or JetBrains Rider (or dotnet CLI)
 - .NET Framework 4.6.2 SDK
-- Valheim installed via Steam
 
-## Step 1 — Copy required DLLs
-
-Create a `libs/` folder inside `CartAutoCollect/CartAutoCollect/` and copy these files into it:
-
-**From your Valheim install** (`Steam/steamapps/common/Valheim/valheim_Data/Managed/`):
-- `assembly_valheim.dll`
-- `UnityEngine.dll`
-- `UnityEngine.CoreModule.dll`
-- `UnityEngine.PhysicsModule.dll`
-
-**From your BepInEx install** (`Steam/steamapps/common/Valheim/BepInEx/core/`):
-- `BepInEx.dll`
-- `0Harmony.dll`
-
-## Step 2 — Build
+## Step 1 — Build
 
 ### Using dotnet CLI:
 ```
-cd CartAutoCollect/CartAutoCollect
-dotnet build --configuration Release
+dotnet restore CartAutoCollect.csproj
+dotnet build CartAutoCollect.csproj --configuration Release -o build/
 ```
 
 ### Using Visual Studio:
 Open `CartAutoCollect.csproj`, set configuration to Release, and Build.
 
-## Step 3 — Install the DLL
+## Step 2 — Install the DLL
 
-Copy the compiled `CartAutoCollect.dll` from `bin/Release/net462/` into:
+Copy the compiled `CartAutoCollect.dll` from `build/` into:
 ```
 Steam/steamapps/common/Valheim/BepInEx/plugins/
 ```
 
-## Step 4 — Package for Thunderstore (optional)
+## Step 3 — Package for Thunderstore (optional)
 
 To share on Thunderstore, create a zip with this structure:
 ```
 CartAutoCollect.zip
 ├── manifest.json
 ├── README.md
-├── icon.png         (256x256 PNG icon — create your own)
+├── icon.png         (256x256 PNG icon)
 └── plugins/
     └── CartAutoCollect.dll
 ```
