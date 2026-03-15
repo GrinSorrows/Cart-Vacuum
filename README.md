@@ -26,11 +26,6 @@ Automatically vacuums up dropped items near your cart as you pull it — inspire
 ### Via r2modman / Thunderstore Mod Manager (recommended)
 Search for **CartAutoCollect** and click Install.
 
-### Manual
-1. Install [BepInExPack Valheim](https://thunderstore.io/c/valheim/p/denikson/BepInExPack_Valheim/)
-2. Copy `CartAutoCollect.dll` into `Valheim/BepInEx/plugins/`
-3. Launch the game — config file is auto-generated on first run
-
 ## Usage Tips
 
 - Put a few stone (or whatever you want to farm) into your cart before heading out — with **OnlyMatchingItems** on, it will only vacuum up stone
