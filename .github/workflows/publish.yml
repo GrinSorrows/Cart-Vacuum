@@ -1,0 +1,45 @@
+name: Publish to Thunderstore
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    env:
+      TCLI_AUTH_TOKEN: ${{ secrets.THUNDERSTORE_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "6.0.x"
+
+      - name: Download libs
+        run: |
+          mkdir -p libs
+          gh release download libs --pattern "*.dll" --dir libs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build mod
+        run: dotnet build CartAutoCollect.csproj -c Release -o build/
+
+      - name: Install tcli
+        run: dotnet tool install --global tcli
+
+      - name: Debug token
+        run: |
+          if [ -z "$TCLI_AUTH_TOKEN" ]; then
+            echo "TOKEN IS EMPTY"
+          else
+            echo "TOKEN IS SET (length: ${#TCLI_AUTH_TOKEN})"
+          fi
+
+      - name: Publish to Thunderstore
+        run: tcli publish --config-path thunderstore.toml
