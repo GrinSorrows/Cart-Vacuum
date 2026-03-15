@@ -1,0 +1,39 @@
+name: Publish to Thunderstore
+
+on:
+  push:
+    tags:
+      - "v*"   # Runs whenever you push a tag like v1.0.0, v1.0.1 etc.
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1 — Check out your code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2 — Install .NET SDK
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "6.0.x"
+
+      # 3 — Restore NuGet packages (BepInEx + ValheimGameLibs)
+      - name: Restore NuGet packages
+        run: dotnet restore ValheimFPSBoost.csproj
+
+      # 4 — Build the DLL
+      - name: Build mod
+        run: dotnet build ValheimFPSBoost.csproj -c Release -o build/ --no-restore
+
+      # 5 — Install tcli (Thunderstore CLI)
+      - name: Install tcli
+        run: dotnet tool install --global tcli
+
+      # 6 — Publish to Thunderstore
+      - name: Publish to Thunderstore
+        env:
+          TCLI_AUTH_TOKEN: ${{ secrets.THUNDERSTORE_TOKEN }}
+        run: tcli publish --config-path thunderstore.toml
