@@ -40,10 +40,21 @@ Search for **CartAutoCollect** and click Install.
 ## Compatibility
 
 - Works alongside **AzuAutoStore**, **SkilledCarryWeight**, **AdvancedTerrainModifiers**, and **ImpactfulSkills**
-- No known conflicts with other mods in the QOL Valheim pack
 - Does **not** require server installation
 
+## Troubleshooting
+
+### Auto-storing mods (e.g. AzuAutoStore) stopped picking up items from the ground after installing CartAutoCollect
+
+This was caused by a bug in version 1.0.0 where the mod would corrupt the ZDO ownership state of nearby containers. This has been fixed in 1.0.1.
+
+If you were running 1.0.0, any chests that were in range of a cart while the old version was active may still be affected. To fix them, simply **empty and break each affected chest, then replace it**. This resets the chest's ZDO state and auto-storing will work normally again. You only need to do this once — chests placed after updating to 1.0.1 will not be affected.
+
 ## Changelog
+
+**1.0.1**
+- Fixed a bug where the mod would corrupt the ZDO ownership state of nearby containers, causing other auto-storing mods such as AzuAutoStore to stop picking up items from the ground
+- The mod now correctly claims ZDO ownership of both the cart and ground items before interacting with them, preventing conflicts with other mods on vanilla and modded servers
 
 **1.0.0**
 - Initial release

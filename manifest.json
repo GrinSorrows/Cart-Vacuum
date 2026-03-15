@@ -1,6 +1,6 @@
 {
   "name": "CartAutoCollect",
-  "version_number": "1.0.0",
+  "version_number": "1.0.1",
   "website_url": "",
   "description": "Automatically collects nearby dropped items into your cart as you pull it. Configurable radius, collection interval, and option to only collect item types already present in the cart.",
   "dependencies": [
