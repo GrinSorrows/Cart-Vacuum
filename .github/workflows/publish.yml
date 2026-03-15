@@ -38,6 +38,4 @@ jobs:
 
       # 6 — Publish to Thunderstore
       - name: Publish to Thunderstore
-        env:
-          TCLI_AUTH_TOKEN: ${{ secrets.THUNDERSTORE_TOKEN }}
-        run: tcli publish --config-path thunderstore.toml
+        run: tcli publish --config-path thunderstore.toml --token ${{ secrets.THUNDERSTORE_TOKEN }}
