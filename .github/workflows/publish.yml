@@ -8,6 +8,8 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+    env:
+      TCLI_AUTH_TOKEN: ${{ secrets.THUNDERSTORE_TOKEN }}
 
     steps:
       # 1 — Check out your code
@@ -38,4 +40,4 @@ jobs:
 
       # 6 — Publish to Thunderstore
       - name: Publish to Thunderstore
-        run: tcli publish --config-path thunderstore.toml --token ${{ secrets.THUNDERSTORE_TOKEN }}
+        run: tcli publish --config-path thunderstore.toml
