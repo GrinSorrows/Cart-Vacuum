@@ -20,13 +20,13 @@ jobs:
         with:
           dotnet-version: "6.0.x"
 
-      # 3 — Restore NuGet packages (BepInEx + ValheimGameLibs)
+      # 3 — Restore NuGet packages
       - name: Restore NuGet packages
-        run: dotnet restore ValheimFPSBoost.csproj
+        run: dotnet restore CartAutoCollect.csproj
 
       # 4 — Build the DLL
       - name: Build mod
-        run: dotnet build ValheimFPSBoost.csproj -c Release -o build/ --no-restore
+        run: dotnet build CartAutoCollect.csproj -c Release -o build/ --no-restore
 
       # 5 — Install tcli (Thunderstore CLI)
       - name: Install tcli
