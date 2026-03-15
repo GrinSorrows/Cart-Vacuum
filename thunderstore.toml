@@ -1,0 +1,27 @@
+[config]
+schemaVersion = "0.0.1"
+
+[package]
+namespace = "GrinSorrows"
+name = "CartAutoCollect"
+versionNumber = "1.0.1"
+description = "Automatically collects nearby dropped items into your cart as you pull it. Configurable radius, collection interval, and option to only collect item types already present in the cart."
+websiteUrl = ""
+containsNsfwContent = false
+
+[package.dependencies]
+"denikson-BepInExPack_Valheim" = "5.4.2333"
+
+[build]
+icon = "icon.png"
+readme = "README.md"
+outdir = "dist/"
+
+[[build.copy]]
+source = "build/CartAutoCollect.dll"
+target = "plugins/"
+
+[publish]
+repository = "https://thunderstore.io"
+communities = ["valheim"]
+categories = ["mods"]
